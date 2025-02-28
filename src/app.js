@@ -4,14 +4,16 @@ export function createTask (
     task,
     description = "",
     project = "",
-    dueDate = ""
+    dueDate = "",
+    section = ""
 ) {
 
-    let taskTitle = task;
-    let taskDesc = description;
+    let title = task;
+    let desc = description;
     let taskProject = project;
     let taskDueDate = dueDate;
+    let taskSection = section
+    let completed = false;
 
-
-    return { taskTitle, taskDesc, taskProject, taskDueDate};
+    return { title, desc, taskProject, taskDueDate, taskSection, completed};
 }
