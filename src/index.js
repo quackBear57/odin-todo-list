@@ -3,9 +3,9 @@ import { createTask } from "./app.js";
 import { loadHome } from "./ui.js";
 
 function clearContentDiv() {
-    const divContent = document.querySelector("#content");
-    while (divContent.firstChild) {
-        divContent.removeChild(divContent.firstChild);
+    const divMain = document.querySelector("#main");
+    while (divMain.firstChild) {
+        divMain.removeChild(divMain.firstChild);
     }
 }
 
