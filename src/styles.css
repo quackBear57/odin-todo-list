@@ -1,5 +1,24 @@
 body {
     background-color: darkslategray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-rows: 80px auto;
+}
+
+#header {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#header button {
+    height: 1.5rem;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 250px auto;
 }
 
 form {
