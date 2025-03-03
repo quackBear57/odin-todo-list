@@ -3,6 +3,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-rows: 80px auto;
+    color: rgb(225, 225, 225);
 }
 
 #header {
@@ -25,4 +26,11 @@ form {
     display: flex;
     flex-direction: column;
     width: 400px;
+}
+
+.inputContainer{
+    display: grid;
+    grid-template-columns: auto 200px;
+    text-align: right;
+    gap: 10px;
 }
