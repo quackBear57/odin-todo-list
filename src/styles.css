@@ -4,12 +4,22 @@ body {
     display: grid;
     grid-template-rows: 80px auto;
     color: rgb(225, 225, 225);
+    height: 100vh;
 }
 
 #header {
     align-self: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-color: rgb(53, 88, 102);
+    padding-top: 20px;
     gap: 20px;
 }
 
@@ -22,10 +32,15 @@ body {
     grid-template-columns: 250px auto;
 }
 
+#mainTop {
+    justify-self: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
     width: 400px;
+    gap: 10px;
 }
 
 .inputContainer{
@@ -33,4 +48,14 @@ form {
     grid-template-columns: auto 200px;
     text-align: right;
     gap: 10px;
+}
+
+.buttonContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+}
+
+.formButton {
+    width: 100px;
 }

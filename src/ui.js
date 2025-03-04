@@ -1,7 +1,8 @@
 import { createTask } from "./app.js"
 
 export const loadHome = () => {
-    const divMain = document.querySelector("#main");
+    // const divMain = document.querySelector("#main");
+    const divMainTop = document.querySelector('#mainTop');
 
     const formMain = document.createElement('form');
 
@@ -44,15 +45,22 @@ export const loadHome = () => {
     inputContainer3.appendChild(inputProj);
     formMain.appendChild(inputContainer3);
 
+    const divButtons = document.createElement('div');
+    divButtons.classList = 'buttonContainer';
     const btnSave = document.createElement('button');
+    btnSave.classList = 'formButton';
     btnSave.textContent = "Save";
-    btnSave.addEventListener('click', createTask(inputTitle.value, inputDesc.value, inputProj.value), false);
-    formMain.appendChild(btnSave);
-
+    btnSave.setAttribute('id','btnSave');
+    btnSave.addEventListener('click', () => {
+        createTask(inputTitle.value, inputDesc.value, inputProj.value);
+    });
+    divButtons.appendChild(btnSave);
 
     const btnLoad = document.createElement('button');
+    btnLoad.classList = 'formButton';
     btnLoad.textContent = "Load";
-    formMain.appendChild(btnLoad);
+    divButtons.appendChild(btnLoad);
+    formMain.appendChild(divButtons);
 
-    divMain.appendChild(formMain);
+    divMainTop.appendChild(formMain);
 }
