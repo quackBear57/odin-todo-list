@@ -1,5 +1,3 @@
-import { addToList } from "./ui";
-
 export function createTask (
     task,
     description = "",
@@ -14,13 +12,6 @@ export function createTask (
     let taskDueDate = dueDate;
     let taskSection = section
     let completed = false;
-    addToList()
 
     return { title, desc, taskProject, taskDueDate, taskSection, completed};
 }
-
-function createManager() {
-
-}
-
-export const taskManager = createManager();

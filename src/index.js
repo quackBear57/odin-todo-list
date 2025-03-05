@@ -1,6 +1,5 @@
 import "./styles.css";
-import { createTask } from "./app.js";
-import { loadHome } from "./ui.js";
+import { createForm } from "./ui.js";
 
 function clearContentDiv() {
     const divMain = document.querySelector("#main");
@@ -12,7 +11,7 @@ function clearContentDiv() {
 const btnHome = document.querySelector("#btnHome");
 btnHome.addEventListener('click', () => {
     clearContentDiv();
-    loadHome();
+    createForm();
 });
 
-loadHome();
+createForm();

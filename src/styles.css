@@ -23,6 +23,11 @@ body {
     gap: 20px;
 }
 
+#taskContainer {
+    min-width: 500px;
+    background-color: darkslategray;
+}
+
 #header button {
     height: 1.5rem;
 }
