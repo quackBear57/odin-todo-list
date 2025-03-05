@@ -16,4 +16,3 @@ btnHome.addEventListener('click', () => {
 });
 
 loadHome();
-

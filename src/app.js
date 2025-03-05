@@ -1,9 +1,9 @@
-let taskList = [];
+import { addToList } from "./ui";
 
 export function createTask (
     task,
     description = "",
-    project = "",
+    project = "Default",
     dueDate = "",
     section = ""
 ) {
@@ -14,6 +14,13 @@ export function createTask (
     let taskDueDate = dueDate;
     let taskSection = section
     let completed = false;
+    addToList()
 
     return { title, desc, taskProject, taskDueDate, taskSection, completed};
 }
+
+function createManager() {
+
+}
+
+export const taskManager = createManager();

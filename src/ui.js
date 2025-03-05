@@ -1,10 +1,15 @@
 import { createTask } from "./app.js"
 
 export const loadHome = () => {
-    // const divMain = document.querySelector("#main");
+    makeForm();
+    makeList();
+}
+
+function makeForm() {
     const divMainTop = document.querySelector('#mainTop');
 
     const formMain = document.createElement('form');
+    formMain.id = 'todoForm';
 
     const lblTitle = document.createElement('label');
     const inputTitle = document.createElement('input');
@@ -14,7 +19,7 @@ export const loadHome = () => {
     lblTitle.setAttribute('for','taskTitle');
     inputTitle.setAttribute('type','text');
     inputTitle.setAttribute('name','taskTitle');
-    inputTitle.setAttribute('id','taskTitle');
+    inputTitle.id = 'taskTitle';
     inputContainer1.appendChild(lblTitle);
     inputContainer1.appendChild(inputTitle);
     formMain.appendChild(inputContainer1);
@@ -27,7 +32,7 @@ export const loadHome = () => {
     lblDesc.setAttribute('for','taskDesc');
     inputDesc.setAttribute('type','text');
     inputDesc.setAttribute('name','taskDesc');
-    inputDesc.setAttribute('id','taskDesc');
+    inputDesc.id = 'taskDesc';
     inputContainer2.appendChild(lblDesc);
     inputContainer2.appendChild(inputDesc);
     formMain.appendChild(inputContainer2);
@@ -40,7 +45,7 @@ export const loadHome = () => {
     lblProj.setAttribute('for','taskProject');
     inputProj.setAttribute('type','text');
     inputProj.setAttribute('name','taskProject');
-    inputProj.setAttribute('id','taskProject');
+    inputProj.id = 'taskProject';
     inputContainer3.appendChild(lblProj);
     inputContainer3.appendChild(inputProj);
     formMain.appendChild(inputContainer3);
@@ -50,10 +55,8 @@ export const loadHome = () => {
     const btnSave = document.createElement('button');
     btnSave.classList = 'formButton';
     btnSave.textContent = "Save";
-    btnSave.setAttribute('id','btnSave');
-    btnSave.addEventListener('click', () => {
-        createTask(inputTitle.value, inputDesc.value, inputProj.value);
-    });
+    btnSave.id = 'btnSave';
+    btnSave.addEventListener('click', submitForm(), false);
     divButtons.appendChild(btnSave);
 
     const btnLoad = document.createElement('button');
@@ -63,4 +66,32 @@ export const loadHome = () => {
     formMain.appendChild(divButtons);
 
     divMainTop.appendChild(formMain);
+}
+
+function makeList() {
+    const divMainList = document.querySelector('#mainList');
+    const taskList = document.createElement('ul');
+    taskList.classList = 'taskList';
+
+    divMainList.appendChild(taskList);
+}
+
+function submitForm() {
+    // const form = document.querySelector('#todoForm');
+    // const formData = new FormData(form);
+    newTask = createTask(
+        document.querySelector('#taskTitle').value,
+        document.querySelector('#taskDesc').value,
+        document.querySelector('#taskProject').value
+    );
+    addToList(newTask);
+}
+
+export function addToList(task) {
+    const taskList = document.querySelector('.taskList');
+    const newTask = task;
+    const taskli = document.createElement('li');
+    taskli.classList = 'listItem';
+    taskli.textContent = newTask.title;
+    taskList.appendChild(taskli);
 }
