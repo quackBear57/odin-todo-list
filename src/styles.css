@@ -1,5 +1,5 @@
 body {
-    background-color: darkslategray;
+    background-color: rgb(47,79,79);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-rows: 80px auto;
@@ -15,19 +15,6 @@ body {
     gap: 20px;
 }
 
-#main {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    background-color: rgb(53, 88, 102);
-    padding-top: 20px;
-    gap: 20px;
-}
-
-#taskContainer {
-    min-width: 500px;
-    background-color: darkslategray;
-}
-
 #header button {
     height: 1.5rem;
 }
@@ -37,30 +24,50 @@ body {
     grid-template-columns: 250px auto;
 }
 
-#mainTop {
+#main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-color: rgb(53, 88, 102);
+    padding-top: 20px;
+    gap: 20px;
+}
+
+#taskContainer {
+    display: grid;
+    justify-content: center;
     justify-self: center;
+    padding: 8px;
+    background-color: rgb(47,79,79);
+    width: 500px;
+    grid-template-columns: 1fr;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
+#inputContainer{
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 10px;
 }
 
-.inputContainer{
+#inputLeft {
     display: grid;
-    grid-template-columns: auto 200px;
-    text-align: right;
-    gap: 10px;
+    grid-template-columns: auto;
 }
 
-.buttonContainer {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-around;
+#taskInput {
+    background-color: rgb(47,79,79);
+    border: solid 1px rgb(67,99,99);
+    color: white;
+    transition:
+        border-color 150ms,
+        background-color 150ms;
 }
 
-.formButton {
-    width: 100px;
+#taskInput:hover {
+    border-color: rgb(117,149,149);
+}
+
+#taskInput:focus {
+    outline:none;
+    background-color: rgb(67,99,99);
+    border-color: rgb(117,149,149);
 }

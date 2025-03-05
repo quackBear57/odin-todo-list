@@ -1,17 +1,13 @@
 export function createTask (
-    task,
-    description = "",
-    project = "Default",
-    dueDate = "",
-    section = ""
+    task
 ) {
 
     let title = task;
-    let desc = description;
-    let taskProject = project;
-    let taskDueDate = dueDate;
-    let taskSection = section
     let completed = false;
 
-    return { title, desc, taskProject, taskDueDate, taskSection, completed};
+    const toggle = () => {
+        completed = completed === false ? true : false;
+    }
+
+    return { title, completed, toggle};
 }
