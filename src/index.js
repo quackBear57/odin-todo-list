@@ -28,8 +28,9 @@ function addTaskToList(task) {
     const taskLabel = document.createElement('label');
     taskLabel.for = 'taskItem1';
     taskLabel.textContent = task.title;
-
-    list.appendChild(taskItem);
+    taskDiv.appendChild(taskItem);
+    taskDiv.appendChild(taskLabel);
+    list.appendChild(taskDiv);
 }
 
 const testTask = createTask('test task title');
