@@ -1,3 +1,4 @@
+import {createTask, addTaskToProject} from "./tasks";
 
 export function createForm() {
     const taskContainer = document.querySelector("#taskContainer");
@@ -13,6 +14,7 @@ export function createForm() {
     const inputButton = document.createElement('button');
     inputButton.id = 'saveTask';
     inputButton.textContent = 'Save';
+    // inputButton.addEventListener('click',)
 
     const inputLeft = document.createElement('div');
     const inputRight = document.createElement('div');
@@ -28,4 +30,16 @@ export function createForm() {
     
     taskContainer.appendChild(inputContainer);
     taskContainer.appendChild(listContainer);   
+}
+
+export function changeProject(newProject) {
+    const currentProject = document.querySelector('#currentProject');
+    currentProject.textContent = newProject;
+}
+
+function formSubmit() {
+    const taskInput = document.querySelector('#taskInput');
+    taskTitle = taskInput.value;
+    createTask(taskTitle);
+    addTaskToProject(taskTitle);
 }
