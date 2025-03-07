@@ -15,8 +15,7 @@ export function createForm() {
     inputButton.id = 'saveTask';
     inputButton.textContent = 'Save';
     inputButton.addEventListener('click', () => {
-        manager.createTask(taskInput.value);
-        refreshTaskList();
+        saveButton();
     })
 
     const inputLeft = document.createElement('div');
@@ -35,16 +34,21 @@ export function createForm() {
     taskContainer.appendChild(listContainer);   
 }
 
+function saveButton() {
+    const inputBox = document.querySelector('#taskInput');
+    if (inputBox.value === "") {
+        alert('Task value cannot be blank');
+        inputBox.focus();
+        return;
+    }
+    manager.createTask(inputBox.value);
+    inputBox.value = '';
+    refreshTaskList();
+}
+
 export function changeProject(newProject) {
     const currentProject = document.querySelector('#currentProject');
     currentProject.textContent = newProject;
-}
-
-function formSubmit() {
-    const taskInput = document.querySelector('#taskInput');
-    taskTitle = taskInput.value;
-    createTask(taskTitle);
-    addTaskToProject(taskTitle);
 }
 
 export function refreshTaskList() {
