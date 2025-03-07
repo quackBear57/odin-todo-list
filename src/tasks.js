@@ -19,18 +19,5 @@ export function taskManager() {
         return [...allTasks];
     }
 
-    return {createTask, getTasks, allTasks}
+    return {createTask, getTasks}
 }
-
-
-// export function createTask (task, taskProject = 'Default') {
-//     let title = task;
-//     let project = taskProject;
-//     let completed = false;
-
-//     const toggle = () => {
-//         completed = completed === false ? true : false;
-//     }
-
-//     return { title, project, completed, toggle};
-// }
