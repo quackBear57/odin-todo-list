@@ -1,7 +1,7 @@
 import { manager } from "./tasks";
 
 export function createForm() {
-    const taskContainer = document.querySelector("#taskContainer");
+    const taskListContainer = document.querySelector("#taskListContainer");
 
     const inputContainer = document.createElement('div');
     inputContainer.id = 'inputContainer';
@@ -30,8 +30,8 @@ export function createForm() {
     const listContainer = document.createElement('div');
     listContainer.id = 'listContainer';
     
-    taskContainer.appendChild(inputContainer);
-    taskContainer.appendChild(listContainer);
+    taskListContainer.appendChild(inputContainer);
+    taskListContainer.appendChild(listContainer);
 }
 
 function saveButton() {
@@ -62,6 +62,8 @@ export function refreshTaskList() {
     // add delete button for tasks
     allTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
+        taskDiv.classList = 'taskContainer';
+
         const taskItem = document.createElement('input');
         const taskName = `task${allTasks.indexOf(task)}`;
         taskItem.name = taskName;
@@ -77,12 +79,18 @@ export function refreshTaskList() {
             taskItem.checked = task.completed;
         }
 
+        const divDelete = document.createElement('button');
+        divDelete.textContent = "X";
+        divDelete.classList = 'taskDelete';
+
         taskItem.addEventListener('change', () => {
             manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
             refreshTaskList();
         })
+
         taskDiv.appendChild(taskItem);
         taskDiv.appendChild(taskLabel);
+        taskDiv.appendChild(divDelete);
         list.appendChild(taskDiv);
     });
 }

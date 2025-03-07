@@ -42,7 +42,7 @@ body {
     gap: 20px;
 }
 
-#taskContainer {
+#taskListContainer {
     display: grid;
     justify-content: center;
     justify-self: center;
@@ -88,7 +88,36 @@ body {
     gap: 2px;
 }
 
-.checked {
+.taskContainer {
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.taskContainer:hover {
+    background-color: rgb(67,99,99);
+}
+
+.taskContainer > label {
+    flex-grow: 1;
+}
+
+.checked > label {
     text-decoration: line-through;
     color: rgb(117,149,149);
+}
+
+.taskDelete {
+    border: solid 1px rgb(137,169,169);
+    background-color: rgb(47,79,79);
+    color: rgb(137,169,169);
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+}
+
+.taskDelete:hover {
+    background-color: rgb(185, 87, 87);
+    font-weight: 800;
+    border-width: 3px;
 }
