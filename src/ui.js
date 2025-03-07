@@ -1,4 +1,4 @@
-import {createTask, addTaskToProject} from "./tasks";
+import { } from "./tasks";
 
 export function createForm() {
     const taskContainer = document.querySelector("#taskContainer");

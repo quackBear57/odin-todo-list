@@ -1,6 +1,6 @@
 import "./styles.css";
 import { createForm, changeProject } from "./ui.js";
-import { createTask, createProject, addTaskToProject } from "./tasks.js";
+import { taskManager } from "./tasks.js";
 
 function clearContentDiv() {
     const divMain = document.querySelector("#main");
@@ -17,48 +17,36 @@ btnHome.addEventListener('click', () => {
 
 createForm();
 
-function refreshTaskList(project) {
+function refreshTaskList() {
     const list = document.querySelector('#listContainer');
     const taskDiv = document.createElement('div');
     const currentProject = document.querySelector('#currentProject').textContent;
 
-    project.
-
-    filteredProjects.projectTasks.forEach((task) => {
-        // console.log(task.title);
+    const allTasks = manager.getTasks();
+    allTasks.forEach((task) => {
         const taskItem = document.createElement('input');
-        const taskName = `task`
+        const taskName = `task${allTasks.indexOf(task)}`;
         taskItem.name = taskName;
+        taskItem.id = taskName;
         taskItem.type = 'checkbox';
 
         const taskLabel = document.createElement('label');
-        taskLabel.for = taskName;
+        taskLabel.setAttribute('for', taskName);
         taskLabel.textContent = task.title;
+        if (task.completed) {
+            taskDiv.classList('checked');
+        }
         taskDiv.appendChild(taskItem);
         taskDiv.appendChild(taskLabel);
         list.appendChild(taskDiv);
     });
 }
 
-function addTaskToList(task) {
-    const list = document.querySelector('#listContainer');
-    const taskDiv = document.createElement('div');
-    
-    const taskItem = document.createElement('input');
-    taskItem.name = 'taskItem1';
-    taskItem.type = 'checkbox';
+changeProject('Default');
 
-    const taskLabel = document.createElement('label');
-    taskLabel.for = 'taskItem1';
-    taskLabel.textContent = task.title;
-    taskDiv.appendChild(taskItem);
-    taskDiv.appendChild(taskLabel);
-    list.appendChild(taskDiv);
-}
+const manager = taskManager();
+manager.createTask('Test Title');
+// manager.toggleComplete();
+console.log(manager.getTasks());
 
-const testTask = createTask('test task title');
-const defaultProject = createProject('Default');
-changeProject(defaultProject.project);
-addTaskToProject(testTask, defaultProject);
-
-refreshTaskList(defaultProject);
+refreshTaskList();
