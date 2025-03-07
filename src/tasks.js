@@ -1,5 +1,4 @@
 
-
 export function taskManager() {
     const allTasks = [];
 
@@ -21,3 +20,5 @@ export function taskManager() {
 
     return {createTask, getTasks}
 }
+
+export const manager = taskManager();
