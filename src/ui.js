@@ -1,4 +1,5 @@
 import { manager } from "./tasks";
+import { saveTasks } from "./storage";
 
 export function createForm() {
     const taskListContainer = document.querySelector("#taskListContainer");
@@ -11,6 +12,11 @@ export function createForm() {
     taskInput.name = "taskInput";
     taskInput.id = 'taskInput';
     taskInput.placeholder = 'Task Name';
+    taskInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            saveButton();
+        }
+    })
 
     const inputButton = document.createElement('button');
     inputButton.id = 'saveTask';
@@ -104,4 +110,7 @@ export function refreshTaskList() {
         taskDiv.appendChild(divDelete);
         list.appendChild(taskDiv);
     });
+
+    saveTasks();
+
 }
