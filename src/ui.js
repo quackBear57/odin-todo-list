@@ -10,6 +10,7 @@ export function createForm() {
     taskInput.type = "text";
     taskInput.name = "taskInput";
     taskInput.id = 'taskInput';
+    taskInput.placeholder = 'Task Name';
 
     const inputButton = document.createElement('button');
     inputButton.id = 'saveTask';
@@ -49,6 +50,7 @@ function saveButton() {
 export function changeProject(newProject) {
     const currentProject = document.querySelector('#currentProject');
     currentProject.textContent = newProject;
+    refreshTaskList();
 }
 
 export function refreshTaskList() {
@@ -58,10 +60,8 @@ export function refreshTaskList() {
     }
     const currentProject = document.querySelector('#currentProject').textContent;
 
-
     const allTasks = manager.getTasks();
     const filteredTasks = allTasks.filter((task) => task.project === currentProject);
-    console.log(filteredTasks);
 
     filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
