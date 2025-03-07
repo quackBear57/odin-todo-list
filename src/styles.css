@@ -50,6 +50,7 @@ body {
     background-color: rgb(47,79,79);
     width: 500px;
     grid-template-columns: 1fr;
+    gap: 8px;
 }
 
 #inputContainer{
@@ -80,6 +81,11 @@ body {
     outline:none;
     background-color: rgb(67,99,99);
     border-color: rgb(117,149,149);
+}
+
+#listContainer {
+    display:grid;
+    gap: 2px;
 }
 
 .checked {
