@@ -16,8 +16,6 @@ export function taskManager() {
 
         allTasks.push(task);
     }
-
-    // add remove task function to be tied to delete button in DOM
     
     function getTasks() {
         return [...allTasks];
@@ -26,11 +24,6 @@ export function taskManager() {
     function deleteTask(indexToDelete){
         allTasks.splice(indexToDelete, 1);
     }
-
-    // function useSavedData(savedTasks) {
-    //     allTasks = savedTasks;
-    //     console.log('loaded data');
-    // }
 
     return {createTask, getTasks, deleteTask}
 }
