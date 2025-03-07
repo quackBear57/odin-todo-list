@@ -1,6 +1,9 @@
+import { retreiveTasks } from "./storage";
+
 
 export function taskManager() {
     let allTasks = [];
+    allTasks = retreiveTasks();
 
     function createTask(taskTitle, taskProject = 'Default') {
         const task = {}
@@ -24,12 +27,12 @@ export function taskManager() {
         allTasks.splice(indexToDelete, 1);
     }
 
-    function useSavedData(savedTasks) {
-        allTasks = savedTasks;
-        console.log('loaded data');
-    }
+    // function useSavedData(savedTasks) {
+    //     allTasks = savedTasks;
+    //     console.log('loaded data');
+    // }
 
-    return {createTask, getTasks, deleteTask, useSavedData}
+    return {createTask, getTasks, deleteTask}
 }
 
 export const manager = taskManager();
