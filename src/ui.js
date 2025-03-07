@@ -59,9 +59,13 @@ export function refreshTaskList() {
         list.removeChild(list.firstChild);
     }
     const currentProject = document.querySelector('#currentProject').textContent;
-
     const allTasks = manager.getTasks();
-    const filteredTasks = allTasks.filter((task) => task.project === currentProject);
+    let filteredTasks = [];
+    if (currentProject === 'All Tasks') {
+        filteredTasks = allTasks;
+    } else {        
+        filteredTasks = allTasks.filter((task) => task.project === currentProject);
+    }
 
     filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');

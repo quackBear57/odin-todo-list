@@ -15,6 +15,16 @@ export function createProjectList() {
     const uniqueProjects = [... new Set(allProjects)];
     
     uniqueProjects.forEach((project) => {
+        if (uniqueProjects.indexOf(project) === 0) {
+            const divProject = document.createElement('div');
+            divProject.classList = 'projectContainer';
+            divProject.textContent = 'All Tasks';
+            divProject.addEventListener('click', () => {
+                changeProject(divProject.textContent);
+            });
+
+            divProjectList.appendChild(divProject);    
+        }
         const divProject = document.createElement('div');
         divProject.classList = 'projectContainer';
         divProject.textContent = project;
