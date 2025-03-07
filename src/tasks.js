@@ -4,11 +4,14 @@ export function taskManager() {
     const allTasks = [];
 
     function createTask(taskTitle, taskProject = 'Default') {
-        const task = {
-            title: taskTitle,
-            project: taskProject,
-            completed: false
-        };
+        const task = {}
+        task.title = taskTitle;
+        task.project = taskProject;
+        task.completed = false;
+        task.toggle = function () {
+            task.completed = task.completed === false ? true : false;
+        }
+
         allTasks.push(task);
     }
 
@@ -16,22 +19,18 @@ export function taskManager() {
         return [...allTasks];
     }
 
-    function toggleComplete(task) {
-        task.completed = completed === false ? true : false;
-    }
-
-    return {createTask, getTasks, toggleComplete}
+    return {createTask, getTasks, allTasks}
 }
 
 
-export function createTask (task, taskProject = 'Default') {
-    let title = task;
-    let project = taskProject;
-    let completed = false;
+// export function createTask (task, taskProject = 'Default') {
+//     let title = task;
+//     let project = taskProject;
+//     let completed = false;
 
-    const toggle = () => {
-        completed = completed === false ? true : false;
-    }
+//     const toggle = () => {
+//         completed = completed === false ? true : false;
+//     }
 
-    return { title, project, completed, toggle};
-}
+//     return { title, project, completed, toggle};
+// }

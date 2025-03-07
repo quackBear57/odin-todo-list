@@ -81,3 +81,8 @@ body {
     background-color: rgb(67,99,99);
     border-color: rgb(117,149,149);
 }
+
+.checked {
+    text-decoration: line-through;
+    color: rgb(117,149,149);
+}
