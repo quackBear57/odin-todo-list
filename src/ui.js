@@ -58,9 +58,12 @@ export function refreshTaskList() {
     }
     const currentProject = document.querySelector('#currentProject').textContent;
 
+
     const allTasks = manager.getTasks();
-    // add delete button for tasks
-    allTasks.forEach((task) => {
+    const filteredTasks = allTasks.filter((task) => task.project === currentProject);
+    console.log(filteredTasks);
+
+    filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
         taskDiv.classList = 'taskContainer';
 

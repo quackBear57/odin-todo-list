@@ -21,5 +21,6 @@ changeProject('Default');
 manager.createTask('Test Title');
 manager.getTasks()[0].toggle();
 manager.createTask('test 2');
+manager.createTask('test new project', 'Project2');
 
 refreshTaskList();
