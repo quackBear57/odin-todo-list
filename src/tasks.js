@@ -14,6 +14,8 @@ export function taskManager() {
         allTasks.push(task);
     }
 
+    // add remove task function to be tied to delete button in DOM
+    
     function getTasks() {
         return [...allTasks];
     }

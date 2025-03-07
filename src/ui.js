@@ -31,7 +31,7 @@ export function createForm() {
     listContainer.id = 'listContainer';
     
     taskContainer.appendChild(inputContainer);
-    taskContainer.appendChild(listContainer);   
+    taskContainer.appendChild(listContainer);
 }
 
 function saveButton() {
@@ -59,6 +59,7 @@ export function refreshTaskList() {
     const currentProject = document.querySelector('#currentProject').textContent;
 
     const allTasks = manager.getTasks();
+    // add delete button for tasks
     allTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
         const taskItem = document.createElement('input');
