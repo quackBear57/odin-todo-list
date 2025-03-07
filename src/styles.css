@@ -50,7 +50,7 @@ body {
     background-color: rgb(47,79,79);
     width: 500px;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 20px;
 }
 
 #inputContainer{
@@ -85,7 +85,7 @@ body {
 
 #listContainer {
     display:grid;
-    gap: 2px;
+    gap: 5px;
 }
 
 .taskContainer {

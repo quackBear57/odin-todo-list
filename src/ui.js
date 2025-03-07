@@ -82,6 +82,10 @@ export function refreshTaskList() {
         const divDelete = document.createElement('button');
         divDelete.textContent = "X";
         divDelete.classList = 'taskDelete';
+        divDelete.addEventListener('click', () => {
+            manager.deleteTask(taskItem.getAttribute('taskIndex'));
+            refreshTaskList();
+        })
 
         taskItem.addEventListener('change', () => {
             manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();

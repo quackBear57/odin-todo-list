@@ -20,7 +20,11 @@ export function taskManager() {
         return [...allTasks];
     }
 
-    return {createTask, getTasks}
+    function deleteTask(indexToDelete){
+        allTasks.splice(indexToDelete, 1);
+    }
+
+    return {createTask, getTasks, deleteTask}
 }
 
 export const manager = taskManager();
