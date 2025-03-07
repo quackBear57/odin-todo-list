@@ -1,6 +1,6 @@
 
 export function taskManager() {
-    const allTasks = [];
+    let allTasks = [];
 
     function createTask(taskTitle, taskProject = 'Default') {
         const task = {}
@@ -24,7 +24,12 @@ export function taskManager() {
         allTasks.splice(indexToDelete, 1);
     }
 
-    return {createTask, getTasks, deleteTask}
+    function useSavedData(savedTasks) {
+        allTasks = savedTasks;
+        console.log('loaded data');
+    }
+
+    return {createTask, getTasks, deleteTask, useSavedData}
 }
 
 export const manager = taskManager();
