@@ -68,6 +68,14 @@ body {
     cursor: pointer;
 }
 
+.divCreateProject {
+    color: rgb(21, 221, 221);
+}
+
+.divCreateProject:hover {
+    background-color: rgb(3, 80, 10);
+}
+
 #taskListContainer {
     display: grid;
     justify-content: center;

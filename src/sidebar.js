@@ -33,6 +33,7 @@ export function createProjectList() {
             divProject.addEventListener('click', () => {
                 createProject();
             });
+            divProject.classList.add('divCreateProject');
         } else {
             divProject.addEventListener('click', () => {
                 changeProject(divProject.textContent);
