@@ -34,11 +34,22 @@ export function createForm() {
     inputContainer.appendChild(inputLeft);
     inputContainer.appendChild(inputRight);
 
-    const listContainer = document.createElement('div');
-    listContainer.id = 'listContainer';
-    
+    const listContainerIncomplete = document.createElement('div');
+    listContainerIncomplete.id = 'listContainerIncomplete';
+    listContainerIncomplete.classList = 'listContainer';
+
+    const listContainerComplete = document.createElement('div');
+    listContainerComplete.id = 'listContainerComplete';
+    listContainerComplete.classList = 'listContainer';
+
+    const divToggleComplete = document.createElement('div');
+    divToggleComplete.id = 'toggleComplete';
+    divToggleComplete.textContent = 'Show/Hide Completed Tasks';
+
     taskListContainer.appendChild(inputContainer);
-    taskListContainer.appendChild(listContainer);
+    taskListContainer.appendChild(listContainerIncomplete);
+    taskListContainer.appendChild(divToggleComplete);
+    taskListContainer.appendChild(listContainerComplete);
 }
 
 function saveButton() {
@@ -60,7 +71,9 @@ export function changeProject(newProject) {
 }
 
 function appendToList(task, taskIndex) {
-    const list = document.querySelector('#listContainer');
+    const listIncomplete = document.querySelector('#listContainerIncomplete');    
+    const listComplete = document.querySelector('#listContainerComplete');
+
     const taskDiv = document.createElement('div');
     taskDiv.classList = 'taskContainer';
 
@@ -95,13 +108,21 @@ function appendToList(task, taskIndex) {
     taskDiv.appendChild(taskItem);
     taskDiv.appendChild(taskLabel);
     taskDiv.appendChild(divDelete);
-    list.appendChild(taskDiv);
+    if (task.completed){
+        listComplete.appendChild(taskDiv);
+    } else {
+        listIncomplete.appendChild(taskDiv);
+    }
 }
 
 export function refreshTaskList() {
-    const list = document.querySelector('#listContainer');
-    while (list.firstChild) {
-        list.removeChild(list.firstChild);
+    const list1 = document.querySelector('#listContainerIncomplete');
+    while (list1.firstChild) {
+        list1.removeChild(list1.firstChild);
+    }
+    const list2 = document.querySelector('#listContainerComplete');
+    while (list2.firstChild) {
+        list2.removeChild(list2.firstChild);
     }
     const currentProject = document.querySelector('#currentProject').textContent;
     const allTasks = manager.getTasks();
