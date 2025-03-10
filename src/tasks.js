@@ -1,15 +1,17 @@
-import { retreiveTasks } from "./storage";
+import { retreiveTasks, saveTasks } from "./storage";
 
 
 export function taskManager() {
     let allTasks = [];
-    allTasks = retreiveTasks();
 
-    function createTask(taskTitle, taskProject = 'Default') {
+    function createTask(taskTitle,
+            taskProject = 'Default',
+            taskCompleted = false
+        ) {
         const task = {}
         task.title = taskTitle;
         task.project = taskProject;
-        task.completed = false;
+        task.completed = taskCompleted;
         task.toggle = function () {
             task.completed = task.completed === false ? true : false;
         }
@@ -24,6 +26,11 @@ export function taskManager() {
     function deleteTask(indexToDelete){
         allTasks.splice(indexToDelete, 1);
     }
+
+    const savedTasks = retreiveTasks();
+    savedTasks.forEach((savedTask) => {
+        createTask(savedTask.title, savedTask.project, savedTask.completed);
+    });
 
     return {createTask, getTasks, deleteTask}
 }

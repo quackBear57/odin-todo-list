@@ -1,13 +1,13 @@
 import { manager } from "./tasks";
 
 export function saveTasks() {
-    const allTasks = manager.getTasks();
-    const jsonData = JSON.stringify(allTasks);
+    const tasksToSave = manager.getTasks();
+    const jsonData = JSON.stringify(tasksToSave);
     localStorage.setItem('userData', jsonData);
 }
 
 export function retreiveTasks() {
     const jsonData = localStorage.getItem('userData');
-    const allTasks = JSON.parse(jsonData);
-    return allTasks;
+    const savedTasks = JSON.parse(jsonData);
+    return savedTasks;
 }

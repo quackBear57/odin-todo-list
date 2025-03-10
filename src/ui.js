@@ -101,7 +101,9 @@ export function refreshTaskList() {
         })
 
         taskItem.addEventListener('change', () => {
-            manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
+            console.log(manager.getTasks()[taskItem.getAttribute('taskIndex')]);
+            
+            // manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
             refreshTaskList();
         })
 
