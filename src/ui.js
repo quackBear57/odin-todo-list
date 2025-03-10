@@ -44,12 +44,14 @@ export function createForm() {
 
     const divToggleComplete = document.createElement('div');
     divToggleComplete.id = 'toggleComplete';
-    divToggleComplete.textContent = 'Show/Hide Completed Tasks';
+    divToggleComplete.textContent = 'Hide Completed Tasks';
     divToggleComplete.addEventListener('click', () => {
         if (listContainerComplete.style.display === 'none') {
             listContainerComplete.style.display = 'block';
+            divToggleComplete.textContent = 'Hide Completed Tasks';
         } else {
             listContainerComplete.style.display = 'none';
+            divToggleComplete.textContent = 'Show Completed Tasks';
         }
     })
 
@@ -66,7 +68,11 @@ function saveButton() {
         inputBox.focus();
         return;
     }
-    manager.createTask(inputBox.value);
+    let currentProject = document.querySelector('#currentProject').textContent;
+    if (currentProject === 'All Tasks') {
+        currentProject = 'Default';
+    }
+    manager.createTask(inputBox.value, currentProject);
     inputBox.value = '';
     refreshTaskList();
 }
