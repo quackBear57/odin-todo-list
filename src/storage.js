@@ -8,6 +8,9 @@ export function saveTasks() {
 
 export function retreiveTasks() {
     const jsonData = localStorage.getItem('userData');
-    const savedTasks = JSON.parse(jsonData);
+    let savedTasks = JSON.parse(jsonData);
+    if (savedTasks === null) {
+        savedTasks = [];
+    }
     return savedTasks;
 }
