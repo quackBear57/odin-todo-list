@@ -59,6 +59,45 @@ export function changeProject(newProject) {
     refreshTaskList();
 }
 
+function appendToList(task, taskIndex) {
+    const list = document.querySelector('#listContainer');
+    const taskDiv = document.createElement('div');
+    taskDiv.classList = 'taskContainer';
+
+    const taskItem = document.createElement('input');
+    const taskName = `task${taskIndex}`;
+    taskItem.name = taskName;
+    taskItem.id = taskName;
+    taskItem.type = 'checkbox';
+    taskItem.setAttribute('taskIndex', taskIndex);
+
+    const taskLabel = document.createElement('label');
+    taskLabel.setAttribute('for', taskName);
+    taskLabel.textContent = task.title;
+    if (task.completed) {
+        taskDiv.classList.toggle('checked');
+        taskItem.checked = task.completed;
+    }
+
+    const divDelete = document.createElement('button');
+    divDelete.textContent = "X";
+    divDelete.classList = 'taskDelete';
+    divDelete.addEventListener('click', () => {
+        manager.deleteTask(taskItem.getAttribute('taskIndex'));
+        refreshTaskList();
+    });
+
+    taskItem.addEventListener('change', () => {
+        manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
+        refreshTaskList();
+    });
+
+    taskDiv.appendChild(taskItem);
+    taskDiv.appendChild(taskLabel);
+    taskDiv.appendChild(divDelete);
+    list.appendChild(taskDiv);
+}
+
 export function refreshTaskList() {
     const list = document.querySelector('#listContainer');
     while (list.firstChild) {
@@ -73,44 +112,14 @@ export function refreshTaskList() {
         filteredTasks = allTasks.filter((task) => task.project === currentProject);
     }
 
-    filteredTasks.forEach((task) => {
-        const taskDiv = document.createElement('div');
-        taskDiv.classList = 'taskContainer';
+    const filteredComplete = filteredTasks.filter((task) => task.completed === true);
+    const filteredIncomplete = filteredTasks.filter((task) => task.completed === false);
 
-        const taskItem = document.createElement('input');
-        const taskName = `task${allTasks.indexOf(task)}`;
-        taskItem.name = taskName;
-        taskItem.id = taskName;
-        taskItem.type = 'checkbox';
-        taskItem.setAttribute('taskIndex', allTasks.indexOf(task));
-
-        const taskLabel = document.createElement('label');
-        taskLabel.setAttribute('for', taskName);
-        taskLabel.textContent = task.title;
-        if (task.completed) {
-            taskDiv.classList.toggle('checked');
-            taskItem.checked = task.completed;
-        }
-
-        const divDelete = document.createElement('button');
-        divDelete.textContent = "X";
-        divDelete.classList = 'taskDelete';
-        divDelete.addEventListener('click', () => {
-            manager.deleteTask(taskItem.getAttribute('taskIndex'));
-            refreshTaskList();
-        })
-
-        taskItem.addEventListener('change', () => {
-            console.log(manager.getTasks()[taskItem.getAttribute('taskIndex')]);
-            
-            // manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
-            refreshTaskList();
-        })
-
-        taskDiv.appendChild(taskItem);
-        taskDiv.appendChild(taskLabel);
-        taskDiv.appendChild(divDelete);
-        list.appendChild(taskDiv);
+    filteredIncomplete.forEach((task) => {
+        appendToList(task, allTasks.indexOf(task));
+    });
+    filteredComplete.forEach((task) => {
+        appendToList(task, allTasks.indexOf(task));
     });
 
     saveTasks();
