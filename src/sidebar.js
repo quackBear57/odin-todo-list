@@ -1,11 +1,11 @@
 import { manager } from "./tasks";
-import { changeProject } from "./ui";
+import { changeProject, createProject } from "./ui";
 
 export function createProjectList() {
-    const divSidebar = document.querySelector('#sidebar');
-
-    const divProjectList = document.createElement('div');
-    divProjectList.classList = 'projectList';
+    const divProjectList = document.querySelector('#projectList');
+    while (divProjectList.firstChild) {
+        divProjectList.removeChild(divProjectList.firstChild);
+    }
 
     const allTasks = manager.getTasks();
     const allProjects = [];
@@ -13,6 +13,7 @@ export function createProjectList() {
         allProjects.push(task.project);
     });
     const uniqueProjects = [... new Set(allProjects)];
+    uniqueProjects.push('Create Project');
     
     uniqueProjects.forEach((project) => {
         if (uniqueProjects.indexOf(project) === 0) {
@@ -28,12 +29,16 @@ export function createProjectList() {
         const divProject = document.createElement('div');
         divProject.classList = 'projectContainer';
         divProject.textContent = project;
-        divProject.addEventListener('click', () => {
-            changeProject(divProject.textContent);
-        });
+        if (project === 'Create Project'){
+            divProject.addEventListener('click', () => {
+                createProject();
+            });
+        } else {
+            divProject.addEventListener('click', () => {
+                changeProject(divProject.textContent);
+            });
+        }
 
         divProjectList.appendChild(divProject);
     });
-
-    divSidebar.appendChild(divProjectList);
 }
