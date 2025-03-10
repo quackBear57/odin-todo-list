@@ -45,6 +45,13 @@ export function createForm() {
     const divToggleComplete = document.createElement('div');
     divToggleComplete.id = 'toggleComplete';
     divToggleComplete.textContent = 'Show/Hide Completed Tasks';
+    divToggleComplete.addEventListener('click', () => {
+        if (listContainerComplete.style.display === 'none') {
+            listContainerComplete.style.display = 'block';
+        } else {
+            listContainerComplete.style.display = 'none';
+        }
+    })
 
     taskListContainer.appendChild(inputContainer);
     taskListContainer.appendChild(listContainerIncomplete);

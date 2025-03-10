@@ -117,7 +117,11 @@ body {
 #toggleComplete {
     font-size: 0.8rem;
     color: rgb(137,169,169);
-    margin: -10px 0;
+    margin-top: -10px;
+}
+
+#listContainerComplete {
+    margin-top: -10px;
 }
 
 .taskContainer {
