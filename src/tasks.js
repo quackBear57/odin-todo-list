@@ -19,6 +19,26 @@ export function taskManager() {
         allTasks.push(task);
     }
     
+    function editTask(indexToEdit, newTitle, newProject, newCompleted) {
+        if (newTitle === undefined){
+            //don't edit
+        } else{
+            allTasks[indexToEdit].title = newTitle;
+        }
+        
+        if (newProject === undefined){
+
+        } else{
+            allTasks[indexToEdit].project = newProject;
+        }
+
+        if (newCompleted === undefined){
+            //don't edit
+        } else{
+            allTasks[indexToEdit].completed = newCompleted;
+        }
+    }
+
     function getTasks() {
         return [...allTasks];
     }
@@ -32,7 +52,7 @@ export function taskManager() {
         createTask(savedTask.title, savedTask.project, savedTask.completed);
     });
 
-    return {createTask, getTasks, deleteTask}
+    return {createTask, getTasks, deleteTask, editTask}
 }
 
 export const manager = taskManager();

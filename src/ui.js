@@ -16,6 +16,7 @@ export function createForm() {
     taskInput.type = "text";
     taskInput.name = "taskInput";
     taskInput.id = 'taskInput';
+    taskInput.classList = 'taskInput';
     taskInput.placeholder = 'Task Name';
     taskInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -125,7 +126,9 @@ function appendToList(task, taskIndex) {
     const imgEdit = document.createElement('img');
     imgEdit.src = editButton;
     imgEdit.classList = 'taskImg';
-    //edit task code
+    imgEdit.addEventListener('click', () => {
+        displayEdit(taskIndex);
+    });
 
     taskItem.addEventListener('change', () => {
         manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
@@ -193,4 +196,47 @@ export function createProject(){
 
     refreshTaskList();
     createProjectList();
+}
+
+function displayEdit(taskIndex){
+    const index = taskIndex;
+    const divToEdit = document.querySelector(`#task${index}`).parentElement;
+    const lastChild = divToEdit.lastChild;
+
+    if (lastChild.classList.contains('editDiv')) {
+        divToEdit.lastChild.remove();
+    } else {
+        const divEdit = document.createElement('div');
+        divEdit.classList = 'editDiv';
+        
+        const editInputContainer = document.createElement('div');
+        editInputContainer.className = 'editInputContainer';
+
+        const breakDiv = document.createElement('div');
+        breakDiv.classList = 'flexBreak';
+        const inputEditTitle = document.createElement('input');
+        inputEditTitle.placeholder = 'Edit task name';
+        inputEditTitle.classList = 'taskInput';
+        inputEditTitle.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter'){
+                manager.editTask(index,inputEditTitle.value);
+                refreshTaskList();
+            }
+        });
+
+        const buttonEdit = document.createElement('button');
+        buttonEdit.classList = 'editSaveButton';
+        buttonEdit.addEventListener('click', () => {
+            manager.editTask(index,inputEditTitle.value);
+            refreshTaskList();
+        });
+        buttonEdit.textContent = 'Save';
+
+        editInputContainer.appendChild(inputEditTitle);
+        divEdit.appendChild(editInputContainer);
+        divEdit.appendChild(buttonEdit);
+        divToEdit.appendChild(breakDiv);
+        divToEdit.appendChild(divEdit);
+        inputEditTitle.focus();
+    }
 }

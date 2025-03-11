@@ -98,20 +98,22 @@ body {
     grid-template-columns: auto;
 }
 
-#taskInput {
+.taskInput {
     background-color: rgb(47,79,79);
     border: solid 1px rgb(67,99,99);
     color: white;
     transition:
         border-color 150ms,
         background-color 150ms;
+    padding-left: 5px;
+    border-radius: 6px;
 }
 
-#taskInput:hover {
+.taskInput:hover {
     border-color: rgb(117,149,149);
 }
 
-#taskInput:focus {
+.taskInput:focus {
     outline:none;
     background-color: rgb(67,99,99);
     border-color: rgb(117,149,149);
@@ -134,6 +136,7 @@ body {
 
 .taskContainer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding-right: 5px;
 }
@@ -162,4 +165,41 @@ body {
 
 .taskImg:hover {
     cursor: pointer;
+}
+
+.flexBreak {
+    height: 0;
+    flex-basis: 100%;
+}
+
+.editDiv {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 45px;
+    padding-left: 20px;
+    margin: 5px 0;
+    gap: 10px;
+}
+
+.editInputContainer {
+    flex-grow: 1;
+    display: flex;
+}
+
+.editInputContainer > .taskInput {
+    flex-grow: 1;
+}
+
+.editSaveButton {
+    color: rgb(117,149,149);
+    border: 1px solid rgb(117,149,149);
+    background-color: rgb(47,79,79);
+    border-radius: 6px;
+}
+
+.editSaveButton:hover {
+    cursor: pointer;
+    border-width: 2px;
+    margin: -1px;
+    background-color: rgb(67,99,99);
 }
