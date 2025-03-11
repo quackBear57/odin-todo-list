@@ -21,19 +21,16 @@ export function taskManager() {
     
     function editTask(indexToEdit, newTitle, newProject, newCompleted) {
         if (newTitle === undefined){
-            //don't edit
         } else{
             allTasks[indexToEdit].title = newTitle;
         }
         
         if (newProject === undefined){
-
         } else{
             allTasks[indexToEdit].project = newProject;
         }
 
         if (newCompleted === undefined){
-            //don't edit
         } else{
             allTasks[indexToEdit].completed = newCompleted;
         }
