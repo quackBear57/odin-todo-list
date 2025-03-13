@@ -158,6 +158,17 @@ function appendToList(task, taskIndex) {
     const indexDisplay = document.createElement('div');
     indexDisplay.classList = 'divTaskIndex';
     indexDisplay.textContent = taskIndex;
+    indexDisplay.addEventListener('dblclick', () => {
+        const minInput = 0;
+        const maxInput = parseInt(manager.getTasks().length)-1;
+        const userInputIndex = parseInt(prompt(`Enter new index ${minInput} - ${maxInput}:`));
+        if ((userInputIndex > maxInput) | (userInputIndex < minInput)) {
+            alert(`Input invalid`);
+        } else {
+            manager.bumpTask(parseInt(taskItem.getAttribute('taskIndex')), userInputIndex);
+        }
+        refreshTaskList();
+    })
 
     taskDiv.appendChild(taskItem);
     taskDiv.appendChild(taskLabel);

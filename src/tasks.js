@@ -36,9 +36,7 @@ export function taskManager() {
         }
     }
 
-    function bumpTask(indexToBump, newIndex) {
-        // changeBy = -1 if move up, 1 if move down
-        // const intChangeBy = parseInt(changeBy);       
+    function bumpTask(indexToBump, newIndex) {      
         const maxIndex = allTasks.length - 1;
         const oldIndex = parseInt(indexToBump);
         const intNewIndex = parseInt(newIndex);
@@ -50,27 +48,7 @@ export function taskManager() {
         } else {
             allTasks.splice(intNewIndex, 0,
                 allTasks.splice(oldIndex, 1)[0]);
-                console.log(`Changing index ${oldIndex} to ${intNewIndex}`);
         }
-        
-        
-        // if (intChangeBy === 1) {
-        //     if (oldIndex === maxIndex) {
-        //     } else {
-        //         allTasks.splice(newIndex, 0,
-        //             allTasks.splice(oldIndex, 1)[0]);
-        //             console.log(`Changing index ${oldIndex} to ${newIndex}`);
-        //     }
-        // }
-
-        // if (intChangeBy === -1) {
-        //     if (oldIndex === 0) {
-        //     } else {
-        //         allTasks.splice(newIndex, 0,
-        //             allTasks.splice(indexToBump, 1)[0]);
-        //             console.log(`Changing index ${oldIndex} to ${newIndex}`);
-        //     }
-        // }
     }
 
     function getTasks() {
