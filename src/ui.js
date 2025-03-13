@@ -3,6 +3,8 @@ import { saveTasks } from "./storage";
 import { createProjectList } from "./sidebar";
 import deleteButton from "./images/x-square.svg";
 import editButton from "./images/edit.svg";
+import upButton from "./images/chevron-up.svg"
+import downButton from "./images/chevron-down.svg"
 
 export function createForm() {
     const taskListContainer = document.querySelector("#taskListContainer");
@@ -128,13 +130,40 @@ function appendToList(task, taskIndex) {
         displayEdit(taskIndex);
     });
 
+    // SORT BUTTONS
+    const imgUp = document.createElement('img');
+    imgUp.src = upButton;
+    imgUp.classList = 'taskImg';
+    imgUp.addEventListener('click', () => {
+        manager.bumpTask(taskItem.getAttribute('taskIndex'),
+            parseInt(taskItem.getAttribute('taskIndex')) - 1);
+        refreshTaskList();
+    });
+
+    const imgDown = document.createElement('img');
+    imgDown.src = downButton;
+    imgDown.classList = 'taskImg';
+    imgDown.addEventListener('click', () => {
+        manager.bumpTask(taskItem.getAttribute('taskIndex'),
+            parseInt(taskItem.getAttribute('taskIndex')) + 1);
+        refreshTaskList();
+    });
+
     taskItem.addEventListener('change', () => {
         manager.getTasks()[taskItem.getAttribute('taskIndex')].toggle();
         refreshTaskList();
     });
 
+    // INDEX DISPLAY
+    const indexDisplay = document.createElement('div');
+    indexDisplay.classList = 'divTaskIndex';
+    indexDisplay.textContent = taskIndex;
+
     taskDiv.appendChild(taskItem);
     taskDiv.appendChild(taskLabel);
+    taskDiv.appendChild(imgUp);
+    taskDiv.appendChild(indexDisplay);
+    taskDiv.appendChild(imgDown);
     taskDiv.appendChild(imgEdit);
     taskDiv.appendChild(imgDelete);
     if (task.completed){

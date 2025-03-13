@@ -1,5 +1,12 @@
 body {
-    background-color: rgb(47,79,79);
+    --blueShade1: rgb(53, 88, 102);
+    --greenShade1: rgb(47,79,79);
+    --greenShade2: rgb(67,99,99);
+    --greenShade3: rgb(117,149,149);
+    --lightGray: rgb(137,169,169);
+    
+    
+    background-color: var(--greenShade1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-rows: 80px auto;
@@ -64,7 +71,7 @@ body {
 }
 
 .projectContainer:hover {
-    background-color: rgb(67,99,99);
+    background-color: var(--greenShade2);
     cursor: pointer;
 }
 
@@ -81,7 +88,7 @@ body {
     justify-content: center;
     justify-self: center;
     padding: 8px;
-    background-color: rgb(47,79,79);
+    background-color: var(--greenShade1);
     width: 500px;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -99,8 +106,8 @@ body {
 }
 
 .taskInput {
-    background-color: rgb(47,79,79);
-    border: solid 1px rgb(67,99,99);
+    background-color: var(--greenShade1);
+    border: solid 1px var(--greenShade2);
     color: white;
     transition:
         border-color 150ms,
@@ -110,13 +117,13 @@ body {
 }
 
 .taskInput:hover {
-    border-color: rgb(117,149,149);
+    border-color: var(--greenShade3);
 }
 
 .taskInput:focus {
     outline:none;
-    background-color: rgb(67,99,99);
-    border-color: rgb(117,149,149);
+    background-color: var(--greenShade2);
+    border-color: var(--greenShade3);
 }
 
 .listContainer {
@@ -126,7 +133,7 @@ body {
 
 #toggleComplete {
     font-size: 0.8rem;
-    color: rgb(137,169,169);
+    color: var(--lightGray);
     margin-top: -10px;
 }
 
@@ -142,7 +149,7 @@ body {
 }
 
 .taskContainer:hover {
-    background-color: rgb(67,99,99);
+    background-color: var(--greenShade2);
 }
 
 .taskContainer > label {
@@ -151,11 +158,18 @@ body {
 
 .checked > label {
     text-decoration: line-through;
-    color: rgb(117,149,149);
+    color: var(--greenShade3);
 }
 
-.taskContainer>img:first-of-type {
+.taskContainer > img {
     margin-right: 3px;
+}
+
+.taskContainer > img:last-of-type {
+    margin-right: 0;
+}
+.taskContainer > img:first-of-type {
+    margin-right: 0;
 }
 
 .taskImg {
@@ -165,6 +179,15 @@ body {
 
 .taskImg:hover {
     cursor: pointer;
+}
+
+.divTaskIndex {
+    font-size: 0.7rem;
+    margin: 0 1px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    color: var(--lightGray);
+    background-color: var(--greenShade2);
 }
 
 .flexBreak {
@@ -191,9 +214,9 @@ body {
 }
 
 .editSaveButton {
-    color: rgb(117,149,149);
-    border: 1px solid rgb(117,149,149);
-    background-color: rgb(47,79,79);
+    color: var(--greenShade3);
+    border: 1px solid var(--greenShade3);
+    background-color: var(--greenShade1);
     border-radius: 6px;
 }
 
@@ -201,5 +224,5 @@ body {
     cursor: pointer;
     border-width: 2px;
     margin: -1px;
-    background-color: rgb(67,99,99);
+    background-color: var(--greenShade2);
 }
