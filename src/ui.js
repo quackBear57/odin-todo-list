@@ -193,6 +193,7 @@ export function refreshTaskList() {
     while (list2.firstChild) {
         list2.removeChild(list2.firstChild);
     }
+    
     const currentProject = document.querySelector('#currentProject').textContent;
     const allTasks = manager.getTasks();
     let filteredTasks = [];

@@ -1,4 +1,4 @@
-import { retreiveTasks, saveTasks } from "./storage";
+import { retreiveTasks } from "./storage";
 
 
 export function taskManager() {
