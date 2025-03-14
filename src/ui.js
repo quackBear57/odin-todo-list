@@ -1,6 +1,5 @@
 import { manager } from "./tasks";
-import { saveTasks } from "./storage";
-import { createProjectList } from "./sidebar";
+import { saveData } from "./storage";
 import deleteButton from "./images/x-square.svg";
 import editButton from "./images/edit.svg";
 import upButton from "./images/chevron-up.svg"
@@ -213,28 +212,8 @@ export function refreshTaskList() {
         appendToList(task, allTasks.indexOf(task));
     });
 
-    saveTasks();
+    saveData();
 
-}
-
-export function createProject(){
-    const currentProject = document.querySelector('#currentProject');
-    let validProjectName = false;
-    let newProject = ''
-    while (!validProjectName) {
-        newProject = prompt('Please enter new project name: ');
-        if (newProject != 'Create Project'){
-            validProjectName = true;
-        }
-    }
-    
-    currentProject.textContent = newProject;
-
-    // create new project to ensure project is added to sidebar
-    manager.createTask('New project task!', newProject);
-
-    refreshTaskList();
-    createProjectList();
 }
 
 function displayEdit(taskIndex){

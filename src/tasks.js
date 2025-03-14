@@ -1,8 +1,9 @@
-import { retreiveTasks } from "./storage";
+import { retreiveData } from "./storage";
 
 
 export function taskManager() {
     let allTasks = [];
+    let allProjects = [];
 
     function createTask(taskTitle,
             taskProject = 'Default',
@@ -14,6 +15,10 @@ export function taskManager() {
         task.completed = taskCompleted;
         task.toggle = function () {
             task.completed = task.completed === false ? true : false;
+        }
+
+        if (!allProjects.includes(taskProject)) {
+            allProjects.push(taskProject);
         }
 
         allTasks.push(task);
@@ -52,16 +57,44 @@ export function taskManager() {
         return [...allTasks];
     }
 
+    function getProjects() {
+        return [...allProjects];
+    }
+
+    function addProject(newProject) {
+        if (!allProjects.includes(newProject)) {
+            allProjects.push(newProject);
+        }
+    }
+
     function deleteTask(indexToDelete){
         allTasks.splice(indexToDelete, 1);
     }
 
-    const savedTasks = retreiveTasks();
+    function deleteProject(projectToDelete) {
+        allProjects.splice(allProjects.indexOf(projectToDelete));
+        allTasks.forEach((task) => {
+            if (task.project === projectToDelete) {
+                deleteTask(allProjects.indexOf(task));
+            }
+        });
+    }
+
+    const savedData = retreiveData();
+    const savedTasks = savedData[0];
+    const savedProjects = savedData[1];
+
     savedTasks.forEach((savedTask) => {
         createTask(savedTask.title, savedTask.project, savedTask.completed);
     });
 
-    return {createTask, getTasks, deleteTask, editTask, bumpTask}
+    savedProjects.forEach((savedProject) => {
+        addProject(savedProject);
+    })
+
+
+    return {createTask, getTasks, deleteTask, editTask, bumpTask, getProjects, 
+        addProject, deleteProject}
 }
 
 export const manager = taskManager();

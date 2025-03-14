@@ -1,16 +1,27 @@
 import { manager } from "./tasks";
 
-export function saveTasks() {
+export function saveData() {
     const tasksToSave = manager.getTasks();
-    const jsonData = JSON.stringify(tasksToSave);
-    localStorage.setItem('userData', jsonData);
+    const jsonTasks = JSON.stringify(tasksToSave);
+    localStorage.setItem('userTasks', jsonTasks);
+
+    const projectsToSave = manager.getProjects();
+    const jsonProjects = JSON.stringify(projectsToSave);
+    localStorage.setItem('userProjects', jsonProjects);
 }
 
-export function retreiveTasks() {
-    const jsonData = localStorage.getItem('userData');
-    let savedTasks = JSON.parse(jsonData);
+export function retreiveData() {
+    const jsonTasks = localStorage.getItem('userTasks');
+    let savedTasks = JSON.parse(jsonTasks);
     if (savedTasks === null) {
         savedTasks = [];
     }
-    return savedTasks;
+
+    const jsonProjects = localStorage.getItem('userProjects');
+    let savedProjects = JSON.parse(jsonProjects);
+    if (savedProjects === null) {
+        savedProjects = [];
+    }
+
+    return [savedTasks, savedProjects];
 }

@@ -1,10 +1,10 @@
 import "./styles.css";
 import { createForm, changeProject, refreshTaskList } from "./ui.js";
-import { createProjectList } from "./sidebar.js";
-import { retreiveTasks } from "./storage.js";
+import { loadSidebar } from "./sidebar.js";
+import { retreiveData } from "./storage.js";
 
 createForm();
 changeProject('Default');
-retreiveTasks(); // pull tasks from local storage if there
+retreiveData(); // pull tasks from local storage if there
 refreshTaskList();
-createProjectList();
+loadSidebar();

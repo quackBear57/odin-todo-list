@@ -52,6 +52,9 @@ body {
 
 #sidebar {
     padding: 0 25px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
 }
 
 #sidebar > h2 {
@@ -81,6 +84,21 @@ body {
 
 .divCreateProject:hover {
     background-color: rgb(3, 80, 10);
+}
+
+.projectControls {
+    margin-top: 15px;
+    display: grid;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.divDeleteProject {
+    color: rgb(230, 92, 67);
+}
+
+.divDeleteProject:hover {
+    background-color: rgb(107, 24, 10);
 }
 
 #taskListContainer {
